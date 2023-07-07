@@ -21,14 +21,31 @@
           Previous
         </button>
       </li>
+      <ng-container *ngIf="paginationArray[0] !== 1">
+        <li>
+          <button
+            (click)="paginateTo(1)"
+            class="flex items-center justify-center h-8 px-3 leading-tight text-gray-600 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+          >
+            1
+          </button>
+        </li>
+        <li *ngIf="(paginationArray[0] - 1) !== 1">
+          <button
+            class="flex items-center justify-center h-8 px-3 leading-tight text-gray-600 bg-white border border-gray-300 cursor-default"
+          >
+            ...
+          </button>
+        </li>
+      </ng-container>
       <ng-container *ngFor="let item of paginationArray; let i = index">
         <li>
           <button
             (click)="paginateTo(item)"
-            class="flex items-center justify-center h-8 px-3 leading-tight text-gray-600 bg-white border border-gray-300"
+            class="flex items-center justify-center h-8 px-3 leading-tight border border-gray-300"
             [ngClass]="{
               'bg-gray-600 text-white': (item) === params['page'],
-              'hover:bg-gray-100 hover:text-gray-700': (item) !== params['page']
+              'hover:bg-gray-100 hover:text-gray-700 bg-white text-gray-600': (item) !== params['page']
             }"
             [disabled]="(item) === params['page']"
           >
