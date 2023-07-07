@@ -1,7 +1,7 @@
 <div
   class="w-full h-full p-4 border border-gray-300 shadow-lg rounded-xl hover:shadow-xl"
 >
-  <div class="mb-1 text-lg font-medium text-blue-500">
+  <div class="mb-1 text-lg font-medium text-blue-500 truncate" [title]="repoData?.name">
     {{ repoData?.name }}
   </div>
   <div class="flex items-center mb-1">
@@ -14,7 +14,7 @@
         alt="Image"
       />
     </div>
-    <div class="font-normal text-gray-500 text-md">
+    <div class="font-normal text-gray-500 truncate text-md" [title]="repoData?.owner?.login">
       {{ repoData?.owner?.login }}
     </div>
   </div>
