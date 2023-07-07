@@ -14,7 +14,7 @@ export class PaginationComponent implements OnInit, OnChanges {
   @Output() public changePage: EventEmitter<number> = new EventEmitter<number>();
   public totalPageNumber: number = 0;
   public paginationArray: number[] = Array(5).fill(0);
-  private visiblePageNumber = 5;
+  private visiblePageNumber = 3;
 
   constructor(private ref: ChangeDetectorRef) { }
 
@@ -26,6 +26,7 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   public paginateTo(i: number): void {
+    this.scrollToTop();
     this.changePage.emit(i);
     this.ref.markForCheck();
   }
@@ -65,6 +66,10 @@ export class PaginationComponent implements OnInit, OnChanges {
       this.paginationArray.push(page);
     }
     this.ref.markForCheck();
+  }
+
+  private scrollToTop(): void {
+    window.scrollTo({top: 0, behavior:'smooth'});
   }
 
 }
