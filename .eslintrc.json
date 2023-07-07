@@ -1,0 +1,136 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json", "e2e/tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "plugins": ["deprecation"],
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/warnings",
+        "plugin:import/errors",
+        "plugin:import/typescript",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "interface",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "^I|Interface$",
+              "match": false
+            }
+          }
+        ],
+        "@typescript-eslint/explicit-function-return-type": ["error"],
+        "deprecation/deprecation": "warn",
+        "import/no-duplicates": ["error"],
+        "import/no-unresolved": [2, { "ignore": ["^@svg.+$"] }],
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "spaced-comment": ["error", "always"],
+        "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": [
+              // Fields
+              "public-static-field",
+              "protected-static-field",
+              "private-static-field",
+              "public-decorated-field",
+              "protected-decorated-field",
+              "private-decorated-field",
+              "public-instance-field",
+              "protected-instance-field",
+              "private-instance-field",
+              "public-abstract-field",
+              "protected-abstract-field",
+              "private-abstract-field",
+
+              // Constructors
+              "public-constructor",
+              "protected-constructor",
+              "private-constructor",
+
+              // Methods
+              "public-static-method",
+              "protected-static-method",
+              "private-static-method",
+              "public-decorated-method",
+              "protected-decorated-method",
+              "private-decorated-method",
+              "public-instance-method",
+              "protected-instance-method",
+              "private-instance-method",
+              "public-abstract-method",
+              "protected-abstract-method",
+              "private-abstract-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "explicit",
+            "overrides": {
+              "accessors": "explicit",
+              "constructors": "no-public",
+              "methods": "explicit",
+              "properties": "off",
+              "parameterProperties": "explicit"
+            }
+          }
+        ],
+        "@typescript-eslint/no-empty-function": [
+          "error",
+          {
+            "allow": ["arrowFunctions"]
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "qobrix",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "qobrix",
+            "style": "camelCase"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.component.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

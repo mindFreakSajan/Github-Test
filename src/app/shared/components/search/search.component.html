@@ -1,0 +1,39 @@
+<div class="relative flex w-full xl:w-search">
+  <form
+    id="globalSearchForm"
+    (ngSubmit)="updateSearch()"
+    [formGroup]="searchForm"
+    autocomplete="off"
+    class="w-full contents"
+  >
+    <input
+      class="w-full pt-2 pb-2 pl-6 pr-16 text-lg leading-8 tracking-wider border rounded-full shadow-inner outline-none border-separator focus:border-primary-700 text-x17 placeholder-lighter-grey-2"
+      #search
+      formControlName="search"
+      [placeholder]="placeHolderText"
+    />
+
+    <button
+      form="globalSearchForm"
+      type="submit"
+      class="absolute top-0 bottom-0 right-0 flex items-center outline-none place-content-center mr-7 focus:outline-none"
+    >
+      <span class="w-7 h-7">
+        <svg
+          viewBox="0 0 18 18"
+          fill="none"
+          fit=""
+          height="100%"
+          width="100%"
+          preserveAspectRatio="xMidYMid meet"
+          focusable="false"
+        >
+          <path
+            d="m16.92 16.395-4.235-4.455a7.294 7.294 0 0 0 1.686-4.673C14.37 3.26 11.147 0 7.185 0 3.223 0 0 3.26 0 7.267c0 4.008 3.223 7.268 7.185 7.268a7.053 7.053 0 0 0 4.117-1.315l4.268 4.49a.926.926 0 0 0 1.325.026.957.957 0 0 0 .026-1.34Zm-9.735-14.5c2.929 0 5.311 2.41 5.311 5.372 0 2.962-2.382 5.372-5.31 5.372-2.93 0-5.312-2.41-5.312-5.372 0-2.961 2.383-5.371 5.311-5.371Z"
+            fill="#3F5877"
+          ></path>
+        </svg>
+      </span>
+    </button>
+  </form>
+</div>

@@ -1,0 +1,72 @@
+<div
+  class="flex flex-wrap items-center justify-between px-6 py-3"
+  *ngIf="totalPageNumber > 1"
+>
+  <div class="text-gray-600">
+    Showing {{ params['page_limit'] }} of {{ totalCount }} results.
+  </div>
+  <div>
+    <ul class="inline-flex -space-x-px text-sm">
+      <li>
+        <button
+          (click)="prev()"
+          class="flex items-center justify-center h-8 px-3 ml-0 leading-tight bg-white border border-gray-300 rounded-l-lg"
+          [ngClass]="{
+            'hover:bg-gray-100 hover:text-gray-700 text-gray-600':
+              params['page'] !== 1,
+            'text-gray-300': params['page'] === 1
+          }"
+          [disabled]="params['page'] === 1"
+        >
+          Previous
+        </button>
+      </li>
+      <ng-container *ngFor="let item of paginationArray; let i = index">
+        <li>
+          <button
+            (click)="paginateTo(item)"
+            class="flex items-center justify-center h-8 px-3 leading-tight text-gray-600 bg-white border border-gray-300"
+            [ngClass]="{
+              'bg-gray-600 text-white': (item) === params['page'],
+              'hover:bg-gray-100 hover:text-gray-700': (item) !== params['page']
+            }"
+            [disabled]="(item) === params['page']"
+          >
+            {{ item }}
+          </button>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="paginationArray[paginationArray.length - 1] !== totalPageNumber">
+        <li *ngIf="(paginationArray[paginationArray.length - 1] + 1) !== totalPageNumber">
+          <button
+            class="flex items-center justify-center h-8 px-3 leading-tight text-gray-600 bg-white border border-gray-300 cursor-default"
+          >
+            ...
+          </button>
+        </li>
+        <li>
+          <button
+            (click)="paginateTo(totalPageNumber)"
+            class="flex items-center justify-center h-8 px-3 leading-tight text-gray-600 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+          >
+            {{ totalPageNumber }}
+          </button>
+        </li>
+      </ng-container>
+      <li>
+        <button
+          (click)="next()"
+          class="flex items-center justify-center h-8 px-3 leading-tight bg-white border border-gray-300 rounded-r-lg"
+          [ngClass]="{
+            'hover:bg-gray-100 hover:text-gray-700 text-gray-600':
+              params['page'] !== totalPageNumber,
+            'text-gray-300': params['page'] === totalPageNumber
+          }"
+          [disabled]="params['page'] === totalPageNumber"
+        >
+          Next
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<ng-container *ngIf="loading; else contentTemplate;">
+  <div class="fixed top-0 left-0 z-10 w-full">
+    <github-loader></github-loader>
+  </div>
+</ng-container>
+<ng-template #contentTemplate>
+  <div class="w-full my-10">
+    <div class="mb-1 text-2xl font-medium text-blue-500 hover:underline">
+      <a [href]="repoData.html_url" target="_blank">
+        {{ repoData?.name }}
+      </a>
+    </div>
+    <div class="flex items-center mb-1">
+      <div class="w-6 mr-2">
+        <img
+          class="rounded-full"
+          [src]="repoData?.owner?.avatar_url"
+          [hidden]="!isImageLoaded"
+          (load)="isImageLoaded = true"
+          alt="Image"
+        />
+      </div>
+      <div class="font-medium text-gray-500 text-md hover:underline">
+        <a [href]="repoData?.owner?.html_url" target="_blank">
+          {{ repoData?.owner?.login }}
+        </a>
+      </div>
+    </div>
+    <div class="text-md">
+      Issues: <span class="font-semibold text-gray-600 text-md">{{repoData?.open_issues_count}}</span>
+    </div>
+    <div class="mb-6 text-md">
+      Default branch: <span class="font-semibold text-gray-600 text-md">{{repoData?.default_branch}}</span>
+    </div>
+    <div class="mb-2 text-3xl">Read me</div>
+    <div [innerHTML]="readmeContent"></div>
+  </div>
+</ng-template>
+
